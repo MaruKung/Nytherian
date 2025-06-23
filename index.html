@@ -182,15 +182,16 @@
 
   <div class="card">
     <h2>📨 แจ้งโอนผ่านแบบฟอร์ม</h2>
+    <p>ห้ามส่งเล่น</p>
     <form id="webhookForm">
       <label>ชื่อธนาคารที่โอน</label>
-      <input type="text" id="bankName" placeholder="เช่น กสิกรไทย" required>
+      <input type="text" id="bankName" placeholder="ชื่อที่โอนเท่านั้น" required>
 
-      <label>ชื่อในเกม (มี @ นำหน้าเท่านั้น)</label>
-      <input type="text" id="gameName" pattern="^@.*" placeholder="@ชื่อคุณ" required>
+      <label>ชื่อในเกม (@ นำหน้าเท่านั้น)</label>
+      <input type="text" id="gameName" pattern="^@.*" placeholder="ใส่@นำหน้าชื่อ" required>
 
       <label>ชื่อสินค้า</label>
-      <input type="text" id="productName" placeholder="เช่น แพ็คทองคำ x10" required>
+      <input type="text" id="productName" placeholder="เช่น แคนดี้ 5.5T" required>
 
       <button type="submit">ส่งข้อมูลไป Discord</button>
     </form>

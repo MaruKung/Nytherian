@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>สนับสนุนNusKub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff0000;
+      --bg: #121212;
+      --card: #1c1c1c;
+      --text: #eeeeee;
+      --subtext: #aaaaaa;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Mali', cursive;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: radial-gradient(circle at center, #330000, transparent 70%);
+      border: 1px solid var(--primary);
+      border-radius: 16px;
+      padding: 40px 20px;
+      margin-bottom: 40px;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,0,0,0.25) 0%, transparent 70%);
+      animation: pulse-glow 5s infinite ease-in-out;
+      z-index: 0;
+    }
+
+    header h1 {
+      position: relative;
+      z-index: 1;
+      font-size: 2.8rem;
+      color: var(--primary);
+      text-shadow:
+        0 0 6px rgba(255, 0, 0, 0.8),
+        0 0 12px rgba(255, 0, 0, 0.5),
+        0 0 18px rgba(255, 0, 0, 0.3);
+      margin: 0;
+      animation: pop-in 1s ease-out forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.2); opacity: 1; }
+    }
+
+    @keyframes pop-in {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--primary);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 25px;
+      box-shadow: 0 0 12px rgba(255, 0, 0, 0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 24px rgba(255, 0, 0, 0.3);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    .card p {
+      margin: 4px 0;
+      font-size: 1.05rem;
+    }
+
+    .card input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border: 1px solid var(--primary);
+      background: #181818;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .card button {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary);
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .card button:hover {
+      background-color: #cc0000;
+    }
+
+    .card img {
+      display: block;
+      margin-top: 16px;
+      max-width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--subtext);
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      .card { padding: 18px; }
+      .card h2 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>สนับสนุน NusKub</h1>
+  </header>
+
+  <div class="card">
+    <h2>💳 โอนผ่านธนาคาร</h2>
+    <p><strong>ธนาคาร:</strong> กสิกรไทย</p>
+    <p><strong>ชื่อบัญชี:</strong> นาย ปาณัสม์ ทานาวิน</p>
+    <p><strong>เลขที่บัญชี:</strong> 012-3-45678-9</p>
+  </div>
+
+  <div class="card">
+    <h2>📲 พร้อมเพย์</h2>
+    <p><strong>เบอร์:</strong> 0931201546</p>
+    <input type="number" id="amount" placeholder="กรอกจำนวนเงิน (บาท)">
+    <button onclick="generateQR()">สร้าง QR พร้อมเพย์</button>
+    <img id="qr" src="" alt="" />
+  </div>
+
+  <div class="card">
+    <h2>🪙 TrueMoney Wallet</h2>
+    <p><strong>เบอร์:</strong> 0931201546</p>
+    <p>โอนผ่านแอป TrueMoney Wallet ได้เลย</p>
+  </div>
+
+  <div class="card">
+    <h2>📨 แจ้งโอนผ่านแบบฟอร์ม</h2>
+    <form id="webhookForm">
+      <label>ชื่อธนาคารที่โอน</label>
+      <input type="text" id="bankName" placeholder="เช่น กสิกรไทย" required>
+
+      <label>ชื่อในเกม (มี @ นำหน้าเท่านั้น)</label>
+      <input type="text" id="gameName" pattern="^@.*" placeholder="@ชื่อคุณ" required>
+
+      <label>ชื่อสินค้า</label>
+      <input type="text" id="productName" placeholder="เช่น แพ็คทองคำ x10" required>
+
+      <button type="submit">ส่งข้อมูลไป Discord</button>
+    </form>
+    <p id="status" style="color: var(--subtext); font-size: 0.9rem;"></p>
+  </div>
+
+  <footer>
+    © 2025 สนับสนุนโดยคุณผู้ชมทุกคน 💖
+  </footer>
+
+  <script>
+    function generateQR() {
+      const amount = document.getElementById("amount").value;
+      if (!amount || isNaN(amount) || amount <= 0) {
+        alert("กรุณากรอกจำนวนเงินที่ถูกต้อง");
+        return;
+      }
+      const phone = "0812345678"; // เปลี่ยนเป็นเบอร์พร้อมเพย์ของคุณ
+      const qrUrl = `https://promptpay.io/${phone}/${amount}.png`;
+      document.getElementById("qr").src = qrUrl;
+      document.getElementById("qr").alt = `QR พร้อมเพย์ ${amount} บาท`;
+    }
+
+    const form = document.getElementById("webhookForm");
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const bank = document.getElementById("bankName").value.trim();
+      const game = document.getElementById("gameName").value.trim();
+      const product = document.getElementById("productName").value.trim();
+      const status = document.getElementById("status");
+
+      if (!bank || !game || !product) {
+        status.textContent = "กรุณากรอกข้อมูลให้ครบถ้วน";
+        return;
+      }
+
+      const webhookUrl = "https://canary.discord.com/api/webhooks/1386554568095301662/3huAQOGBfWunRA4vGhTwRPYVZUVo0ykiF2iRI1eIgTlTo57UNkOMkM9ZXYyyb392f8Kk"; // <== แทนที่ด้วย Webhook ของคุณ
+
+      const content = `📥 แจ้งโอนใหม่!\n💳 ธนาคาร: ${bank}\n🎮 ชื่อในเกม: ${game}\n📦 สินค้า: ${product}`;
+
+      try {
+        const res = await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ content }),
+        });
+
+        if (res.ok) {
+          status.textContent = "✅ ส่งข้อมูลเรียบร้อยแล้ว!";
+          form.reset();
+        } else {
+          status.textContent = "❌ เกิดข้อผิดพลาดในการส่งข้อมูล";
+        }
+      } catch (err) {
+        status.textContent = "❌ ไม่สามารถเชื่อมต่อกับ Discord Webhook";
+        console.error(err);
+      }
+    });
+  </script>
+
+</body>
+</html>

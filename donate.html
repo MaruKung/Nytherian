@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Donate NusKub</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Minercraft</a></li>
+        <li><a href="admin.html">Roblox</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="hero2">
+      <h1 lang="th">สนับสนุนณัสม์ กับ แมพของเขา</h1>
+  </div>
+      <div class="card-group">
+
+        <div class="card">
+          <h2>Bank</h2>
+          <p lang="th">ธนาคารกสิกรไทย</p>
+          <p lang="th">ชื่อบัญชี: <strong>ปาณัสม์ ทานาวิน</strong></p>
+          <p lang="th">เลขบัญชี: <strong>012-3-45678-9</strong></p>
+        </div>
+
+        <div class="card">
+          <h2>PromptPay</h2>
+          <label lang="th" for="amount-promptpay">จำนวนเงิน (บาท)</label>
+          <input type="number" id="amount-promptpay" min="1"/>
+          <button lang="th" onclick="generatePromptPayQR()">สร้าง QR</button>
+          <div id="qrcode-promptpay" class="qrcode-box"></div>
+        </div>
+
+        <div class="card">
+          <h2>TrueMoney Wallet</h2>
+          <p>TrueMoney:</p>
+          <p lang="th"><strong>0931201546</strong></p>
+          <p lang="th">ชื่อบัญชี: <strong>ปารัสม์ ทานาวิน</strong></p>
+        </div>
+
+      </div>
+   <script src="script.js"></script>
+</body>
+</html>

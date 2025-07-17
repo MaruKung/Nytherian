@@ -100,14 +100,12 @@ header {
   background-color: darkred;
 }
 
-/* Content */
 .content {
   max-width: 900px;
   margin: 100px auto 60px;
   padding: 0 20px;
 }
 
-/* Medieval Card Style */
 .card {
   background: #f9f1de;
   border: 5px solid #6b4c3b;
@@ -120,19 +118,15 @@ header {
   font-family: 'Goudy Old Style', 'Georgia', serif;
 }
 
-.card h2, .card h3 {
+.card h3 {
   font-family: 'Cinzel', serif;
   color: #4a342e;
   margin-bottom: 15px;
   text-shadow: 1px 1px 0 #b29e7d;
 }
 
-.card h2 {
-  font-size: 36px;
-}
-
 .card h3 {
-  font-size: 26px;
+  font-size: 36px;
 }
 
 .card ul {
@@ -146,7 +140,7 @@ header {
 }
 
 .card a {
-  color: #8b0000;
+  color: #e4b185;
   text-decoration: none;
 }
 
@@ -154,38 +148,54 @@ header {
   text-decoration: underline;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .header-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.read-more-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #8b0000;
+  color: #fff;
+  border-radius: 6px;
+  font-weight: bold;
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  text-decoration: none;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.3s, transform 0.2s;
+}
 
-  .menu ul {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-  }
+.read-more-btn:hover {
+  background-color: #a52a2a;
+  transform: translateY(-2px);
+}
 
-  .intro-screen h1 {
-    font-size: 36px;
-  }
 
-  .start-button {
-    font-size: 16px;
-    padding: 12px 24px;
-  }
+/* Footer */
+.footer {
+  background-color: #1a120b;
+  color: #fdf6e3;
+  text-align: center;
+  padding: 30px 20px;
+  font-family: 'Cinzel', serif;
+  border-top: 3px solid #6b4c3b;
+}
 
-  .card {
-    padding: 20px;
-    font-size: 16px;
-  }
+.footer-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-  .card h2 {
-    font-size: 28px;
-  }
+.footer a {
+  color: #d4af37;
+  text-decoration: none;
+  font-weight: bold;
+}
 
-  .card h3 {
-    font-size: 22px;
-  }
+.footer a:hover {
+  text-decoration: underline;
+  color: gold;
+}
+
+.footer p {
+  margin: 10px 0;
+  font-size: 16px;
 }

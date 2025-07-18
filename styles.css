@@ -12,7 +12,6 @@ body {
   color: #3b2f2f;
 }
 
-/* Header */
 header {
   position: fixed;
   top: 0;
@@ -60,7 +59,6 @@ header {
   color: gold;
 }
 
-/* Intro Screen */
 .intro-screen {
   height: 100vh;
   display: flex;
@@ -92,8 +90,8 @@ header {
   color: white;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
   font-family: 'Cinzel', serif;
+  transition: background-color 0.3s ease;
 }
 
 .start-button:hover {
@@ -101,9 +99,9 @@ header {
 }
 
 .content {
-  max-width: 900px;
-  margin: 100px auto 60px;
-  padding: 0 20px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .card {
@@ -123,10 +121,7 @@ header {
   color: #4a342e;
   margin-bottom: 15px;
   text-shadow: 1px 1px 0 #b29e7d;
-}
-
-.card h3 {
-  font-size: 36px;
+  font-size: 26px;
 }
 
 .card ul {
@@ -168,8 +163,77 @@ header {
   transform: translateY(-2px);
 }
 
+/* Donate section styles */
+.donate-section {
+  max-width: 700px;
+  margin: 0 auto 60px auto;
+  padding: 20px 30px;
+  background-color: #f9f1de;
+  border: 5px solid #6b4c3b;
+  border-radius: 12px;
+  box-shadow: 5px 5px 10px rgba(107, 76, 59, 0.5);
+  font-family: 'Goudy Old Style', 'Georgia', serif;
+  color: #3b2f2f;
+  text-align: center;
+}
 
-/* Footer */
+.donate-section h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  color: #4a342e;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 0 #b29e7d;
+}
+
+.donate-info {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.input-amount {
+  width: 150px;
+  padding: 8px 10px;
+  font-size: 18px;
+  border: 2px solid #6b4c3b;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.generate-btn {
+  background-color: #6b4c3b;
+  color: #f9f1de;
+  border: none;
+  padding: 12px 25px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  transition: background-color 0.3s ease;
+}
+
+.generate-btn:hover {
+  background-color: #4a342e;
+}
+
+#qr-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#qr-container canvas {
+  border: 4px solid #6b4c3b;
+  border-radius: 12px;
+}
+
+/* FOOTER */
 .footer {
   background-color: #1a120b;
   color: #fdf6e3;

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ร้านค้า | Nytherian</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="server-name">Nytherian Server</div>
+      <nav class="menu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="server.html">Server</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="intro-screen" id="home">
+    <h2>เกี่ยวกับเซิร์ฟเวอร์ Nytherian</h2>
+      <p>
+        Nytherian คือเซิร์ฟเวอร์แนวสวมบทบาท (Roleplay) ในโลกยุคกลาง ที่ผสมผสานระหว่างความสมจริง
+        กับแฟนตาซี มุ่งเน้นการมีปฏิสัมพันธ์กับผู้เล่นคนอื่น และการสร้างสังคมตามบทบาทที่คุณเลือก
+      </p>
+    <button class="start-button" id="startBtn">เริ่มต้น</button>
+    </section>
+  <section id="main-content" class="content">
+    <div class="card">
+      <h2>ร้านค้า Nytherian</h2>
+      <p>สนับสนุนเซิร์ฟเวอร์ของเราด้วยการซื้อไอเทม ยศ หรือสิทธิพิเศษ! รายได้จะนำไปพัฒนาเซิร์ฟเวอร์ให้ดียิ่งขึ้น</p>
+      
+      <div class="shop-grid">
+        <div class="shop-item">
+          <h3>🛡️ ยศ Knight</h3>
+          <p>สิทธิ์พิเศษ + Prefix สุดเท่ในแชท</p>
+          <p class="price">ราคา: 150 บาท</p>
+          <button class="buy-btn">ซื้อทันที</button>
+        </div>
+
+        <div class="shop-item">
+          <h3>🔥 ยศ Lord</h3>
+          <p>ชุดเกราะทองคำ + ยศ VIP + Warp ส่วนตัว</p>
+          <p class="price">ราคา: 300 บาท</p>
+          <button class="buy-btn">ซื้อทันที</button>
+        </div>
+
+        <div class="shop-item">
+          <h3>🎁 ชุดเริ่มต้นนักผจญภัย</h3>
+          <p>ดาบ, อาหาร, แผนที่ และของใช้เบื้องต้น</p>
+          <p class="price">ราคา: 50 บาท</p>
+          <button class="buy-btn">ซื้อทันที</button>
+        </div>
+
+      <div class="shop-item">
+          <h3>🛡️ ยศ Knight</h3>
+          <p>สิทธิ์พิเศษ + Prefix สุดเท่ในแชท</p>
+          <p class="price">ราคา: 150 บาท</p>
+          <button class="buy-btn">ซื้อทันที</button>
+        </div>
+
+        <div class="shop-item">
+          <h3>🔥 ยศ Lord</h3>
+          <p>ชุดเกราะทองคำ + ยศ VIP + Warp ส่วนตัว</p>
+          <p class="price">ราคา: 300 บาท</p>
+          <button class="buy-btn">ซื้อทันที</button>
+        </div>
+
+        <div class="shop-item">
+          <h3>🎁 ชุดเริ่มต้นนักผจญภัย</h3>
+          <p>ดาบ, อาหาร, แผนที่ และของใช้เบื้องต้น</p>
+          <p class="price">ราคา: 50 บาท</p>
+          <button class="buy-btn">ซื้อทันที</button>
+        </div>
+      </div>
+
+      <p style="margin-top: 20px;">⚠️ หลังจากชำระเงิน กรุณาติดต่อแอดมินผ่าน Discord เพื่อรับของในเกม</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+  <div class="footer-container">
+    <p>&copy; 2025 Nytherian. All rights reserved.</p>
+    <p>สร้างเพื่อสารฝันในวัยเด็ก</p>
+    <div class="footer-links">
+      <a href="terms.html">ข้อกำหนด</a> |
+      <a href="privacy.html">นโยบายความเป็นส่วนตัว</a> |
+      <a href="contact.html">ติดต่อเรา</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+<script>
+    document.getElementById('startBtn').addEventListener('click', () => {
+  const headerHeight = 50;
+  const target = document.getElementById('main-content');
+  const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+  window.scrollTo({
+    top: targetPosition,
+    behavior: 'smooth'
+  });
+});
+</script>
+</html>

@@ -1,3 +1,16 @@
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburgerBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+
 const promptPayID = '0931201546';
 
 function generateDonateQR() {
@@ -24,15 +37,3 @@ function generateDonateQR() {
     container.appendChild(canvas);
   });
 }
-
-
-document.getElementById('startBtn').addEventListener('click', () => {
-  const headerHeight = 110;
-  const target = document.getElementById('main-content');
-  const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
-
-  window.scrollTo({
-    top: targetPosition,
-    behavior: 'smooth'
-  });
-});

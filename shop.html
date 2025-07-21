@@ -70,18 +70,18 @@
 </footer>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // --- Carousel ---
-    let currentSlide = 0;
-    const slides = document.querySelectorAll(".carousel-slide");
-    const totalSlides = slides.length;
-    const carousel = document.getElementById("carousel");
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
 
-    function updateCarousel() {
-      const offset = -currentSlide * 100;
-      carousel.style.transform = `translateX(${offset}%)`;
-    }
+    hamburgerBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
 
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+      
     function moveCarousel(step) {
       currentSlide = (currentSlide + step + totalSlides) % totalSlides;
       updateCarousel();
@@ -89,24 +89,10 @@
 
     document.getElementById("prevBtn").addEventListener("click", () => moveCarousel(-1));
     document.getElementById("nextBtn").addEventListener("click", () => moveCarousel(1));
+
     setInterval(() => moveCarousel(1), 5000);
+
     updateCarousel();
-
-    // --- Hamburger Menu ---
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const navMenu = document.getElementById('navMenu');
-
-    if (hamburgerBtn && navMenu) {
-      hamburgerBtn.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-      });
-
-      navMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          navMenu.classList.remove('active');
-        });
-      });
-    }
   });
 </script>
 

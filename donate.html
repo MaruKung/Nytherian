@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Home | Nytherian</title>
+  <title>Donate | Nytherian</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -11,18 +11,25 @@
 
   <header>
     <div class="header-container">
-      <div class="server-name">Nytherian Server</div>
-      <nav class="menu">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="server.html">Server</a></li>
-          <li><a href="shop.html">Shop</a></li>
-          <li><a href="donate.html">Donate</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
+    <div class="server-name">Nytherian Server</div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <nav class="menu" id="navMenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="server.html">Server</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
     </div>
   </header>
+
+  <section class="intro-screen1" id="home"></section>
 
   <section id="main-content" class="content">
    <section class="donate-section" id="donate">
@@ -37,7 +44,7 @@
       id="donateAmount"
       class="input-amount"
       min="1"
-      placeholder="เช่น 100"
+      placeholder="กรุณากรอกจำนวนเงิน"
     />
     <br />
     <button class="generate-btn" onclick="generateDonateQR()">สร้าง QR Code</button>

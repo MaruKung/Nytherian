@@ -3,24 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Home | Nytherian</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Nytherian Server - Hamburger Menu ชัดๆ</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+
   <header>
     <div class="header-container">
-      <div class="server-name">Nytherian Server</div>
-      <nav class="menu">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="server.html">Server</a></li>
-          <li><a href="shop.html">Shop</a></li>
-          <li><a href="donate.html">Donate</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
+    <div class="server-name">Nytherian Server</div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <nav class="menu" id="navMenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="server.html">Server</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
     </div>
   </header>
 
@@ -33,42 +39,34 @@
   <section id="main-content" class="content">
    <div class="card">
     <h3>Nytherian</h3>
-     <ul>
       <li>เซิร์ฟเวอร์สวมบทบาทที่ไม่เหมือนใคร</li>
       <li>โลกยุคกลางที่เต็มไปด้วยการกดขี่และการต่อสู้</li>
       <li>ระบบการเล่นที่เน้นการสร้างประสบการณ์ที่สนุกสนาน</li>
-     </ul>
    </div>
 
     <div class="card" id ="server">
     <h3>Server Info</h3>
-     <ul>
       <li>ข่าวสารต่างๆ ภายในเซิร์ฟเวอร์</li>
       <li>ข้อมูลต่างๆของเซิร์ฟเวอร์</li>
       <li>วิธีการเข้าเล่น และสิ่งที่ต้องมี</li>
-     </ul>
     <a href="server.html" class="read-more-btn">อ่านเพิ่มเติม</a>
    </div>
 
     <div class="card" id="shop">
     <h3>Shop</h3>
-     <ul>
       <li>สินค้าภายในเซิร์ฟเวอร์</li>
       <li>สินค้าทุกชิ้นทำขึ้นเพื่อเล่นสวมบทบาทให้สมจริงขึ้น (เท่านั้น)</li>
-     </ul>
     <a href="shop.html" class="read-more-btn">อ่านเพิ่มเติม</a>
    </div>
 
    <div class="card" id="donate">
     <h3>Donate Server</h3>
-     <ul>
       <li>สนับสนุนเซิร์ฟเวอร์ (เท่านั้น)</li>
-     </ul>
     <a href="donate.html" class="read-more-btn">อ่านเพิ่มเติม</a>
    </div>
 
     <div class="card" id="contact">
-      <h3>ติดต่อเรา</h3>
+      <h3>Contact</h3>
       <p>
         หากมีข้อสงสัยหรือต้องการข้อมูลเพิ่มเติม ติดต่อได้ที่อีเมล:  
       </p>
@@ -88,7 +86,34 @@
   </div>
 </footer>
 
+<script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
 
-  <script src="script.js"></script>
+    hamburgerBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+    
+  document.getElementById('startBtn').addEventListener('click', () => {
+  const target = document.getElementById('main-content');
+
+  const customOffset = 60;
+
+
+  const elementPosition = target.getBoundingClientRect().top;
+  const offsetPosition = elementPosition + window.scrollY - customOffset;
+
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: 'smooth'
+  });
+});
+</script>
 </body>
 </html>

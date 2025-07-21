@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Nytherian</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+    <div class="server-name">Nytherian Server</div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <nav class="menu" id="navMenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="server.html">Server</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="donate.html">Donate</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    </div>
+  </header>
+
+<section class="intro-screen1" id="home"></section>
+  <section id="main-content" class="content">
+   <div class="card">
+      <h3>ติดต่อทีมงาน</h3>
+      <form id="contactForm">
+  <label for="name" class="input-label">ชื่อของคุณ <span style="color: red;">*</span>:</label>
+  <input type="text" id="name" name="name" class="input-amount" required>
+
+  <label for="channel" class="input-label">ช่องทางการติดต่อ <span style="color: red;">*</span>:</label>
+  <select id="channel" name="channel" class="input-amount" required>
+    <option value="">-- เลือกช่องทาง --</option>
+    <option value="Facebook">Facebook</option>
+    <option value="Instagram">Instagram</option>
+    <option value="Email">Email</option>
+    <option value="Line">LINE</option>
+    <option value="Discord">Discord</option>
+    <option value="Xbox">Xbox</option>
+    <option value="Telegram">Telegram</option>
+    <option value="Whatsapp">WhatsApp</option>
+    <option value="Other">อื่นๆ</option>
+  </select>
+
+  <label for="contactInfo" class="input-label">ข้อมูลการติดต่อ (User/ID/Email):</label>
+  <input type="text" id="contactInfo" name="contactInfo" class="input-amount" required>
+
+  <label for="message" class="input-label">ข้อความ:</label>
+  <textarea id="message" name="message" rows="5" class="input-amount" required></textarea>
+
+  <br><button type="submit" class="generate-btn">ส่งข้อความ</button>
+</form>
+
+<p id="status" style="margin-top: 10px; font-weight: bold;"></p>
+    </div>
+  </section>
+
+<footer class="footer">
+  <div class="footer-container">
+    <p>&copy; 2025 Nytherian. All rights reserved.</p>
+    <p>สร้างเพื่อสารฝันในวัยเด็ก</p>
+    <div class="footer-links">
+      <a href="terms.html">ข้อกำหนด</a> |
+      <a href="privacy.html">นโยบายความเป็นส่วนตัว</a> |
+      <a href="contact.html">ติดต่อเรา</a>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburgerBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value.trim();
+  const channel = document.getElementById('channel').value;
+  const contactInfo = document.getElementById('contactInfo').value.trim();
+  const message = document.getElementById('message').value.trim();
+  const status = document.getElementById('status');
+
+  if (!name || !channel || !contactInfo || !message) {
+    status.textContent = 'กรุณากรอกข้อมูลให้ครบถ้วน';
+    return;
+  }
+
+  const webhookURL = 'https://discord.com/api/webhooks/1391680129071190177/IgxqeHoCTaZ4DgspskErZYIXI4o2Do6qJTG5KQYTxMRIlQqVXlXp3tAYIsyXMHIqzd78'; // 🔁 เปลี่ยนเป็น URL ของคุณ
+
+  const payload = {
+    embeds: [
+      {
+        title: '📩 ข้อความใหม่จากฟอร์ม Contact',
+        color: 0xFF0000,
+        fields: [
+          { name: 'ชื่อ', value: name, inline: true },
+          { name: 'ช่องทางการติดต่อ', value: channel, inline: true },
+          { name: 'ข้อมูลช่องทาง', value: contactInfo },
+          { name: 'ข้อความ', value: message }
+        ],
+        footer: {
+          text: 'Nytherian Contact Form',
+        },
+        timestamp: new Date().toISOString()
+      }
+    ]
+  };
+
+  try {
+    const response = await fetch(webhookURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+      status.style.color = 'green';
+      status.textContent = '✅ ส่งข้อความสำเร็จ ขอบคุณที่ติดต่อเรา!';
+      this.reset();
+    } else {
+      throw new Error('ส่งไม่สำเร็จ');
+    }
+  } catch (error) {
+    status.style.color = 'red';
+    status.textContent = '❌ เกิดข้อผิดพลาดในการส่งข้อมูล';
+  }
+});
+
+  </script>
+</body>
+</html>

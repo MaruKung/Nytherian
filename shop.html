@@ -71,6 +71,7 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    // --- Carousel ---
     let currentSlide = 0;
     const slides = document.querySelectorAll(".carousel-slide");
     const totalSlides = slides.length;
@@ -88,23 +89,25 @@
 
     document.getElementById("prevBtn").addEventListener("click", () => moveCarousel(-1));
     document.getElementById("nextBtn").addEventListener("click", () => moveCarousel(1));
-
     setInterval(() => moveCarousel(1), 5000);
-
     updateCarousel();
-  });
-  const hamburgerBtn = document.getElementById('hamburgerBtn');
+
+    // --- Hamburger Menu ---
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
     const navMenu = document.getElementById('navMenu');
 
-    hamburgerBtn.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
-
-    navMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
+    if (hamburgerBtn && navMenu) {
+      hamburgerBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
       });
-    });
+
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+        });
+      });
+    }
+  });
 </script>
 
 </body>

@@ -389,7 +389,7 @@ header {
     right: 0;
     background-color: #1a120b;
     width: 350px;
-    height: calc(30vh - 60px);
+    height: calc(100vh - 60px);
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
     box-shadow: -3px 0 8px rgba(0,0,0,0.7);

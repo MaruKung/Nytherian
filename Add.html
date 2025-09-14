@@ -4,97 +4,59 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>รายชื่อผู้เล่น — Nytherian</title>
-  <link href="https://fonts.googleapis.com/css2?family=Mali:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
   <link href="style.css" rel="stylesheet" />
 </head>
 <body>
-  <canvas id="starfield"></canvas>
+  <header>
+    <div class="header-container">
+      <div class="server-name">Nytherian</div>
+      <nav class="menu">
+        <ul>
+          <li><a href="#">หน้าแรก</a></li>
+          <li><a href="#">ผู้เล่น</a></li>
+        </ul>
+      </nav>
+      <div class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </header>
 
-  <div class="page">
-    <div class="container">
-      <h1>รายชื่อผู้เล่น</h1>
-      <div class="list">
-        <div class="card">
-          <h2>Nusmaru Nytherian</h2>
-          <div class="subtitle">ลูกครึ่งเอล์ฟ • อายุ 121 ปี</div>
-          <button class="btn primary" onclick="window.location.href='ID001.html'">ดูโปรไฟล์</button>
-        </div>
+  <div class="intro-screen">
+    <h1>รายชื่อผู้เล่น</h1>
+    <p>เลือกผู้เล่นเพื่อดูโปรไฟล์</p>
 
-        <div class="card">
-          <h2>Player Two</h2>
-          <div class="subtitle">ตัวละครลึกลับ • อายุ 99 ปี</div>
-          <button class="btn primary" onclick="window.location.href='ID002.html'">ดูโปรไฟล์</button>
-        </div>
+    <div class="content">
+      <div class="card">
+        <h3>Nusmaru Nytherian</h3>
+        <p>ลูกครึ่งเอล์ฟ • อายุ 121 ปี</p>
+        <button class="read-more-btn" onclick="window.location.href='ID001.html'">ดูโปรไฟล์</button>
+      </div>
 
-        <div class="card">
-          <h2>Player Three</h2>
-          <div class="subtitle">นักรบผู้กล้าหาญ • อายุ 87 ปี</div>
-          <button class="btn primary" onclick="window.location.href='ID003.html'">ดูโปรไฟล์</button>
-        </div>
+      <div class="card">
+        <h3>Player Two</h3>
+        <p>นักรบผู้กล้าหาญ • อายุ 99 ปี</p>
+        <button class="read-more-btn" onclick="window.location.href='ID002.html'">ดูโปรไฟล์</button>
+      </div>
+
+      <div class="card">
+        <h3>Player Three</h3>
+        <p>นักเวทย์ลึกลับ • อายุ 87 ปี</p>
+        <button class="read-more-btn" onclick="window.location.href='ID003.html'">ดูโปรไฟล์</button>
       </div>
     </div>
   </div>
 
   <script>
-    // --- Starfield Canvas (เหมือนหน้าโปรไฟล์) ---
-    const canvas = document.getElementById('starfield');
-    const ctx = canvas.getContext('2d');
-    let w=0,h=0,stars=[];
-
-    function resize(){
-      w = canvas.width = innerWidth;
-      h = canvas.height = innerHeight;
-      initStars();
-    }
-
-    function initStars(){
-      stars = [];
-      const count = Math.min(160, Math.floor((w*h)/7000));
-      for(let i=0;i<count;i++){
-        stars.push({
-          x: Math.random()*w,
-          y: Math.random()*h,
-          r: Math.random()*1.6 + 0.2,
-          vx: (Math.random()-0.5)*0.1,
-          vy: (Math.random()-0.5)*0.1,
-          alpha: Math.random()*0.9 + 0.1
-        });
-      }
-    }
-
-    function draw(){
-      ctx.clearRect(0,0,w,h);
-      const g = ctx.createLinearGradient(0,0,0,h);
-      g.addColorStop(0, 'rgba(255,255,255,0.02)');
-      g.addColorStop(1, 'rgba(0,0,0,0.2)');
-      ctx.fillStyle = g;
-      ctx.fillRect(0,0,w,h);
-
-      for(const s of stars){
-        ctx.beginPath();
-        ctx.fillStyle = 'rgba(255,255,255,' + s.alpha + ')';
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-        ctx.fill();
-      }
-      requestAnimationFrame(update);
-    }
-
-    function update(){
-      for(const s of stars){
-        s.x += s.vx;
-        s.y += s.vy;
-        if(s.x < 0) s.x = w;
-        if(s.x > w) s.x = 0;
-        if(s.y < 0) s.y = h;
-        if(s.y > h) s.y = 0;
-        s.alpha += (Math.random()-0.5)*0.02;
-        s.alpha = Math.max(0.05, Math.min(1, s.alpha));
-      }
-      draw();
-    }
-
-    addEventListener('resize', resize);
-    resize();
+    // Hamburger menu
+    const hamburger = document.querySelector('.hamburger');
+    const menu = document.querySelector('nav.menu');
+    hamburger.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
   </script>
 </body>
 </html>

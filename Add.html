@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nusmaru Nytherian — แนะนำตัว</title>
 
-  <!-- Mali font (thin + regular + bold) -->
+  <!-- Mali font -->
   <link href="https://fonts.googleapis.com/css2?family=Mali:wght@300;400;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg-1:#060608;
       --bg-2:#0f0f13;
-      --accent:#c62828; /* red glow */
+      --accent:#c62828;
       --muted:#9aa0a6;
       --glass: rgba(255,255,255,0.03);
       --glass-2: rgba(255,255,255,0.04);
@@ -35,7 +35,6 @@
       overflow-x:hidden;
     }
 
-    /* starfield canvas sits behind everything */
     #starfield{
       position:fixed;
       inset:0;
@@ -88,27 +87,30 @@
       width:220px;
       height:220px;
       border-radius:18px;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,80,80,0.06), transparent 8%),
-        linear-gradient(180deg,#0b0b0c 0%, #111116 100%);
+      background: linear-gradient(180deg,#0b0b0c 0%, #111116 100%);
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow: 0 6px 30px rgba(0,0,0,0.6), inset 0 0 40px rgba(198,40,40,0.06);
+      box-shadow: 0 6px 30px rgba(0,0,0,0.6);
       border:1px solid rgba(255,255,255,0.03);
       position:relative;
       transform:translateZ(0);
+      overflow:hidden;
     }
 
-    /* crystal / emblem */
+    /* ใช้รูปแทน crystal */
     .crystal {
-      width:98px;
-      height:120px;
-      filter:drop-shadow(0 10px 18px rgba(198,40,40,0.12));
-      transform:translateY(-6px);
-      transition: transform .6s cubic-bezier(.2,.9,.3,1);
+      width:120px;
+      height:auto;
+      border-radius:12px;
+      object-fit:contain;
+      box-shadow: 0 8px 24px rgba(198,40,40,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .sigil-wrap:hover .crystal{ transform:translateY(-12px) rotate(-6deg) }
+    .sigil-wrap:hover .crystal{
+      transform: scale(1.05);
+      box-shadow: 0 12px 36px rgba(198,40,40,0.35);
+    }
 
     h1{
       margin:0;
@@ -123,7 +125,6 @@
       font-size:14px;
     }
 
-    /* RIGHT: info */
     .info{
       padding:6px 4px;
       display:flex;
@@ -194,7 +195,6 @@
     .stat .num{font-weight:700; font-size:20px}
     .stat .label{font-size:12px; color:var(--muted)}
 
-    /* footer / actions */
     .actions{
       display:flex;
       gap:12px;
@@ -220,7 +220,6 @@
     }
     .btn:hover{ transform:translateY(-4px) }
 
-    /* subtle runes floating */
     .rune{
       position:absolute;
       width:14px;height:14px;
@@ -238,14 +237,12 @@
       100%{ transform:translateY(0) rotate(0) }
     }
 
-    /* small screens */
     @media (max-width:880px){
       .card{ grid-template-columns: 1fr; padding:18px; gap:14px }
       .sigil{ width:160px; height:160px }
       h1{ font-size:28px }
     }
 
-    /* tiny decorative corner */
     .corner-quote{
       position:absolute;
       right:22px;
@@ -255,7 +252,6 @@
       pointer-events:none;
     }
 
-    /* little narrator text */
     .subtitle {
       display:flex;
       gap:10px;
@@ -264,7 +260,6 @@
       font-size:13px;
     }
 
-    /* link underline effect */
     a.pulse{
       color:#fff;
       text-decoration:none;
@@ -293,24 +288,8 @@
         <div class="corner-quote">"ลูกครึ่งเอล์ฟ — เคยได้ยินไว้เพียงแผ่ว"</div>
 
         <div class="sigil" title="Emblem of Nusmaru">
-          <!-- stylized crystal svg -->
-          <svg class="crystal" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <linearGradient id="g1" x1="0" x2="1">
-                <stop offset="0" stop-color="#ff6b6b"/>
-                <stop offset="1" stop-color="#b71c1c"/>
-              </linearGradient>
-              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="6" result="b"/>
-                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-            </defs>
-            <g filter="url(#glow)">
-              <path d="M100 6 L156 60 L136 150 L100 234 L64 150 L44 60 Z" fill="url(#g1)" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
-              <path d="M100 32 L130 72 L116 140 L100 204 L84 140 L70 72 Z" fill="rgba(255,255,255,0.12)" opacity="0.08"/>
-              <circle cx="100" cy="120" r="6" fill="#ffd7d7" opacity="0.8"/>
-            </g>
-          </svg>
+          <!-- ใช้รูปแทน crystal -->
+          <img class="crystal" src="https://cdn.discordapp.com/attachments/1409477896275492969/1416764684367036478/IMG_9351.png?ex=68c8086e&is=68c6b6ee&hm=f2fe7bc5c253555833782f93fe571cd9840638cd2b6c66614a6b1c2d02bca833&" alt="Emblem Crystal">
         </div>
 
         <div style="width:100%;display:flex;flex-direction:column;align-items:center;gap:6px">
@@ -389,7 +368,6 @@
   </div>
 
   <script>
-    // Starfield canvas
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
     let w=0,h=0,stars=[];
@@ -416,7 +394,6 @@
 
     function draw(){
       ctx.clearRect(0,0,w,h);
-      // subtle vignette
       const g = ctx.createLinearGradient(0,0,0,h);
       g.addColorStop(0, 'rgba(255,255,255,0.02)');
       g.addColorStop(1, 'rgba(0,0,0,0.2)');
@@ -440,7 +417,6 @@
         if(s.x > w) s.x = 0;
         if(s.y < 0) s.y = h;
         if(s.y > h) s.y = 0;
-        // twinkle
         s.alpha += (Math.random()-0.5)*0.02;
         s.alpha = Math.max(0.05, Math.min(1, s.alpha));
       }
@@ -450,7 +426,6 @@
     addEventListener('resize', resize);
     resize();
 
-    // Reveal button toggles small extra hint
     const revealBtn = document.getElementById('revealBtn');
     const mysteryText = document.getElementById('mysteryText');
     let revealed = false;
@@ -466,7 +441,6 @@
       }
     });
 
-    // simple text-to-speech for flavor (works in modern browsers)
     const voiceBtn = document.getElementById('voiceBtn');
     voiceBtn.addEventListener('click', async () => {
       if(!('speechSynthesis' in window)) {
@@ -474,58 +448,20 @@
         return;
       }
       const msg = new SpeechSynthesisUtterance(
-        "Nusmaru Nytherian. ลูกครึ่งเอล์ฟ. อายุ 121 ปี. ที่มา...ยังคงปริศนา."
-      );
-      // prefer a deep male-ish voice if available
-      const voices = speechSynthesis.getVoices();
-      if(voices.length){
-        const male = voices.find(v => /male|man|boy/i.test(v.name)) || voices[0];
-        msg.voice = male;
-      }
-      msg.rate = 0.95;
-      msg.pitch = 0.8;
-      speechSynthesis.cancel();
-      speechSynthesis.speak(msg);
-    });
+        "Nusmaru Nytherian. ลูกครึ่งเอล์ฟ. อายุ         121 ปี. กระซิบไว้เพียงว่า ประวัติของ Nusmaru ถูกจารึกเป็นเงาในเรื่องเล่าเล็ก ๆ."
+              );
+              msg.rate = 0.9;      // ความเร็วพูด
+              msg.pitch = 1.1;     // ระดับเสียง
+              msg.volume = 1;      // เสียงดังเต็ม
+              window.speechSynthesis.cancel(); // หยุดเสียงเดิมถ้ามี
+              window.speechSynthesis.speak(msg);
+            });
 
-    // copy name quick action
-    function copySigil(){
-      navigator.clipboard?.writeText('Nusmaru Nytherian').then(()=> {
-        const el = document.createElement('div');
-        el.textContent = 'คัดลอกชื่อแล้ว';
-        Object.assign(el.style, {
-          position:'fixed', left:'50%', top:'20px', transform:'translateX(-50%)',
-          background:'rgba(0,0,0,0.6)', color:'#fff', padding:'10px 18px', borderRadius:'10px',
-          zIndex:9999, fontSize:'13px', boxShadow:'0 10px 30px rgba(0,0,0,0.6)'
-        });
-        document.body.appendChild(el);
-        setTimeout(()=> el.remove(),1400);
-      }).catch(()=> alert('ไม่สามารถคัดลอกได้'));
-    }
-
-    // small parallax tilt on mouse
-    const sigilWrap = document.querySelector('.sigil');
-    document.addEventListener('mousemove', (e)=>{
-      const rect = sigilWrap.getBoundingClientRect();
-      const cx = rect.left + rect.width/2;
-      const cy = rect.top + rect.height/2;
-      const dx = (e.clientX - cx) / rect.width;
-      const dy = (e.clientY - cy) / rect.height;
-      sigilWrap.style.transform = `rotateY(${dx*6}deg) rotateX(${ -dy*6 }deg) translateZ(0)`;
-    });
-    document.addEventListener('mouseleave', ()=> sigilWrap.style.transform = '');
-
-    // small accessibility: prefers-reduced-motion handling
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if(mediaQuery.matches){
-      // stop animations
-      document.querySelectorAll('.rune').forEach(r=> r.style.animation = 'none');
-      cancelAnimationFrame(update);
-    }
-
-    // kick off voices preload
-    window.speechSynthesis?.getVoices();
-
-  </script>
-</body>
-</html>
+            function copySigil(){
+              navigator.clipboard.writeText("Nusmaru Nytherian").then(() => {
+                alert("คัดลอกชื่อเรียบร้อย!");
+              });
+            }
+          </script>
+        </body>
+        </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nusmaru Nytherian — แนะนำตัว</title>
+  <title>รายชื่อผู้เล่น — Nytherian</title>
   <link href="https://fonts.googleapis.com/css2?family=Mali:wght@300;400;700&display=swap" rel="stylesheet">
   <link href="style.css" rel="stylesheet" />
 </head>
@@ -11,79 +11,34 @@
   <canvas id="starfield"></canvas>
 
   <div class="page">
-    <div class="card" role="region" aria-label="Nusmaru Nytherian profile">
-      <div class="sigil-wrap" aria-hidden="false">
-        <div class="corner-quote" id="cornerQuote">"ลูกครึ่งเอล์ฟ — เคยได้ยินไว้เพียงแผ่ว"</div>
-
-        <div class="sigil" title="Emblem of Nusmaru">
-          <img class="crystal" src="https://cdn.discordapp.com/attachments/1409477896275492969/1416764684367036478/IMG_9351.png" alt="Emblem Crystal">
-        </div>
-
-        <div style="width:100%;display:flex;flex-direction:column;align-items:center;gap:6px">
-          <h1 id="profileName">Nusmaru Nytherian</h1>
-          <div class="subtitle">
-            <div id="subtitle1">ลูกครึ่งเอลฟ์</div>
-            <div style="opacity:0.16">•</div>
-            <div id="subtitle2">อายุ 121 ปี</div>
+    <div class="container">
+      <h1>รายชื่อผู้เล่น</h1>
+      <div class="list">
+        <div class="card player-card" data-id="nusmaru">
+          <div class="sigil">
+            <img class="crystal" src="https://cdn.discordapp.com/attachments/1409477896275492969/1416764684367036478/IMG_9351.png" alt="Emblem Crystal">
+          </div>
+          <div class="info">
+            <h2>Nusmaru Nytherian</h2>
+            <div class="subtitle">ลูกครึ่งเอลฟ์ • อายุ 121 ปี</div>
           </div>
         </div>
 
-        <div class="rune" style="left:8%; top:14%; animation-delay:0s"></div>
-        <div class="rune" style="left:78%; top:22%; width:18px;height:18px; animation-delay:1.6s"></div>
-        <div class="rune" style="left:28%; top:72%; width:10px;height:10px; animation-delay:0.9s"></div>
-      </div>
-
-      <div class="info">
-        <div class="bio" role="article" style="display:flex;gap:12px">
-          <div style="flex:1">
-            <div class="meta">ชื่อ-สกุล</div>
-            <div class="value" id="bioName">Nusmaru Nytherian</div>
-            <div style="height:8px"></div>
-
-            <div class="meta">เพศ</div>
-            <div class="value" id="bioGender">ชาย</div>
-          </div>
-
-          <div style="flex:0.8; text-align:right">
-            <div class="meta">ที่มา</div>
-            <div class="value" id="bioOrigin">ยังคงปริศนา</div>
-            <div style="height:8px"></div>
-            <div class="meta">สถานะ</div>
-            <div class="value" id="bioStatus" style="color:var(--accent)">ความลับ — ไม่เปิดเผย</div>
+        <div class="card player-card" data-id="player2">
+          <div class="sigil"></div>
+          <div class="info">
+            <h2>Player Two</h2>
+            <div class="subtitle">ตัวละครลึกลับ • อายุ 99 ปี</div>
           </div>
         </div>
 
-        <div class="tags" aria-hidden="true">
-          <div class="tag" id="tag1">แอดมิน</div>
-          <div class="tag" id="tag2">สตรีมเมอร์</div>
-          <div class="tag" id="tag3">เอลฟ์</div>
-        </div>
-
-        <div class="mystery" id="mysteryText">
-          กระซิบไว้เพียงว่า... ประวัติของ <strong>Nusmaru</strong> ถูกจารึกเป็นเงาในเรื่องเล่าเล็ก ๆ ผู้ที่ต้องการรู้จักจริง ๆ อาจต้องตามหาแสงสีแดงในค่ำคืนที่ไร้ดวงจันทร์.
-        </div>
-
-        <div class="stats" aria-hidden="true" style="display:flex;gap:12px">
-          <div class="stat">
-            <div class="num" id="statAge">121</div>
-            <div class="label" id="labelAge">อายุ (ปี)</div>
-          </div>
-          <div class="stat">
-            <div class="num" id="statLineage">ราชวงศ์</div>
-            <div class="label" id="labelLineage">เชื้อสาย</div>
-          </div>
-          <div class="stat">
-            <div class="num" id="statBirthplace">ไนท์เทอร์เรียน</div>
-            <div class="label" id="labelBirthplace">บ้านเกิด</div>
+        <div class="card player-card" data-id="player3">
+          <div class="sigil"></div>
+          <div class="info">
+            <h2>Player Three</h2>
+            <div class="subtitle">นักรบผู้กล้าหาญ • อายุ 87 ปี</div>
           </div>
         </div>
-
-        <div class="actions" style="display:flex;align-items:center;gap:12px">
-          <button class="btn primary" id="langBtn" aria-pressed="false">English</button>
-          <div style="flex:1"></div>
-          <div style="font-size:12px;color:var(--muted)">ID 001</div>
-        </div>
-
       </div>
     </div>
   </div>
@@ -149,78 +104,13 @@
     addEventListener('resize', resize);
     resize();
 
-    // --- Language Switch ---
-    const langBtn = document.getElementById('langBtn');
-    let isEnglish = false;
-
-    const textTH = {
-      cornerQuote: `"ลูกครึ่งเอล์ฟ — เคยได้ยินไว้เพียงแผ่ว"`,
-      profileName: "Nusmaru Nytherian",
-      subtitle1: "ลูกครึ่งเอลฟ์",
-      subtitle2: "อายุ 121 ปี",
-      bioName: "Nusmaru Nytherian",
-      bioGender: "ชาย",
-      bioOrigin: "ยังคงปริศนา",
-      bioStatus: "ความลับ — ไม่เปิดเผย",
-      tag1: "แอดมิน",
-      tag2: "สตรีมเมอร์",
-      tag3: "เอลฟ์",
-      mysteryText: `กระซิบไว้เพียงว่า... ประวัติของ <strong>Nusmaru</strong> ถูกจารึกเป็นเงาในเรื่องเล่าเล็ก ๆ ผู้ที่ต้องการรู้จักจริง ๆ อาจต้องตามหาแสงสีแดงในค่ำคืนที่ไร้ดวงจันทร์.`,
-      statAge: "121",
-      labelAge: "อายุ (ปี)",
-      statLineage: "ราชวงศ์",
-      labelLineage: "เชื้อสาย",
-      statBirthplace: "ไนท์เทอร์เรียน",
-      labelBirthplace: "บ้านเกิด",
-      langBtn: "English"
-    };
-
-    const textEN = {
-      cornerQuote: `"Half-elf — Heard only in whispers"`,
-      profileName: "Nusmaru Nytherian",
-      subtitle1: "Half-elf",
-      subtitle2: "Age 121",
-      bioName: "Nusmaru Nytherian",
-      bioGender: "Male",
-      bioOrigin: "Still a mystery",
-      bioStatus: "Secret — Not disclosed",
-      tag1: "Admin",
-      tag2: "Streamer",
-      tag3: "Elf",
-      mysteryText: `Sometimes the name <strong>Nusmaru</strong> is associated with red lights in the sky — people say the soft whispers in the moonless night are warnings or invitations.`,
-      statAge: "121",
-      labelAge: "Age (yrs)",
-      statLineage: "Royal",
-      labelLineage: "Lineage",
-      statBirthplace: "Nytherian",
-      labelBirthplace: "Birthplace",
-      langBtn: "Thai"
-    };
-
-    langBtn.addEventListener('click', () => {
-      isEnglish = !isEnglish;
-      const txt = isEnglish ? textEN : textTH;
-
-      document.getElementById('cornerQuote').innerHTML = txt.cornerQuote;
-      document.getElementById('profileName').innerHTML = txt.profileName;
-      document.getElementById('subtitle1').innerHTML = txt.subtitle1;
-      document.getElementById('subtitle2').innerHTML = txt.subtitle2;
-      document.getElementById('bioName').innerHTML = txt.bioName;
-      document.getElementById('bioGender').innerHTML = txt.bioGender;
-      document.getElementById('bioOrigin').innerHTML = txt.bioOrigin;
-      document.getElementById('bioStatus').innerHTML = txt.bioStatus;
-      document.getElementById('tag1').innerHTML = txt.tag1;
-      document.getElementById('tag2').innerHTML = txt.tag2;
-      document.getElementById('tag3').innerHTML = txt.tag3;
-      document.getElementById('mysteryText').innerHTML = txt.mysteryText;
-      document.getElementById('statAge').innerHTML = txt.statAge;
-      document.getElementById('labelAge').innerHTML = txt.labelAge;
-      document.getElementById('statLineage').innerHTML = txt.statLineage;
-      document.getElementById('labelLineage').innerHTML = txt.labelLineage;
-      document.getElementById('statBirthplace').innerHTML = txt.statBirthplace;
-      document.getElementById('labelBirthplace').innerHTML = txt.labelBirthplace;
-
-      langBtn.innerHTML = txt.langBtn;
+    // --- Navigate to Profile ---
+    const playerCards = document.querySelectorAll('.player-card');
+    playerCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.getAttribute('data-id');
+        window.location.href = `profile.html?id=${id}`;
+      });
     });
   </script>
 </body>

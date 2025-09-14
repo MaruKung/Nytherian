@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>รายชื่อผู้เล่น — Nytherian</title>
+  <title>Nusmaru Nytherian — โปรไฟล์</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
   <link href="style.css" rel="stylesheet" />
 </head>
@@ -13,7 +13,7 @@
       <div class="server-name">Nytherian</div>
       <nav class="menu">
         <ul>
-          <li><a href="#">หน้าแรก</a></li>
+          <li><a href="index.html">หน้าแรก</a></li>
           <li><a href="#">ผู้เล่น</a></li>
         </ul>
       </nav>
@@ -25,28 +25,22 @@
     </div>
   </header>
 
-  <div class="intro-screen">
-    <h1>รายชื่อผู้เล่น</h1>
-    <p>เลือกผู้เล่นเพื่อดูโปรไฟล์</p>
+  <div class="content">
+    <div class="card">
+      <h3 id="profileName">Nusmaru Nytherian</h3>
+      <p id="subtitle">ลูกครึ่งเอล์ฟ • อายุ 121 ปี</p>
 
-    <div class="content">
-      <div class="card">
-        <h3>Nusmaru Nytherian</h3>
-        <p>ลูกครึ่งเอล์ฟ • อายุ 121 ปี</p>
-        <button class="read-more-btn" onclick="window.location.href='ID001.html'">ดูโปรไฟล์</button>
+      <div class="bio">
+        <p><strong>เพศ:</strong> <span id="bioGender">ชาย</span></p>
+        <p><strong>ที่มา:</strong> <span id="bioOrigin">ยังคงปริศนา</span></p>
+        <p><strong>สถานะ:</strong> <span id="bioStatus">ความลับ — ไม่เปิดเผย</span></p>
+        <p><strong>แท็ก:</strong> <span id="tag1">แอดมิน</span>, <span id="tag2">สตรีมเมอร์</span>, <span id="tag3">เอลฟ์</span></p>
+        <p id="mysteryText">
+          กระซิบไว้เพียงว่า... ประวัติของ <strong>Nusmaru</strong> ถูกจารึกเป็นเงาในเรื่องเล่าเล็ก ๆ ผู้ที่ต้องการรู้จักจริง ๆ อาจต้องตามหาแสงสีแดงในค่ำคืนที่ไร้ดวงจันทร์.
+        </p>
       </div>
 
-      <div class="card">
-        <h3>Player Two</h3>
-        <p>นักรบผู้กล้าหาญ • อายุ 99 ปี</p>
-        <button class="read-more-btn" onclick="window.location.href='ID002.html'">ดูโปรไฟล์</button>
-      </div>
-
-      <div class="card">
-        <h3>Player Three</h3>
-        <p>นักเวทย์ลึกลับ • อายุ 87 ปี</p>
-        <button class="read-more-btn" onclick="window.location.href='ID003.html'">ดูโปรไฟล์</button>
-      </div>
+      <button class="read-more-btn" id="langBtn">English</button>
     </div>
   </div>
 
@@ -56,6 +50,51 @@
     const menu = document.querySelector('nav.menu');
     hamburger.addEventListener('click', () => {
       menu.classList.toggle('active');
+    });
+
+    // Language switch
+    const langBtn = document.getElementById('langBtn');
+    let isEnglish = false;
+
+    const textTH = {
+      profileName: "Nusmaru Nytherian",
+      subtitle: "ลูกครึ่งเอล์ฟ • อายุ 121 ปี",
+      bioGender: "ชาย",
+      bioOrigin: "ยังคงปริศนา",
+      bioStatus: "ความลับ — ไม่เปิดเผย",
+      tag1: "แอดมิน",
+      tag2: "สตรีมเมอร์",
+      tag3: "เอลฟ์",
+      mysteryText: `กระซิบไว้เพียงว่า... ประวัติของ <strong>Nusmaru</strong> ถูกจารึกเป็นเงาในเรื่องเล่าเล็ก ๆ ผู้ที่ต้องการรู้จักจริง ๆ อาจต้องตามหาแสงสีแดงในค่ำคืนที่ไร้ดวงจันทร์.`,
+      langBtn: "English"
+    };
+
+    const textEN = {
+      profileName: "Nusmaru Nytherian",
+      subtitle: "Half-elf • Age 121",
+      bioGender: "Male",
+      bioOrigin: "Still a mystery",
+      bioStatus: "Secret — Not disclosed",
+      tag1: "Admin",
+      tag2: "Streamer",
+      tag3: "Elf",
+      mysteryText: `Sometimes the name <strong>Nusmaru</strong> is associated with red lights in the sky — people say the soft whispers in the moonless night are warnings or invitations.`,
+      langBtn: "Thai"
+    };
+
+    langBtn.addEventListener('click', () => {
+      isEnglish = !isEnglish;
+      const txt = isEnglish ? textEN : textTH;
+      document.getElementById('profileName').innerHTML = txt.profileName;
+      document.getElementById('subtitle').innerHTML = txt.subtitle;
+      document.getElementById('bioGender').innerHTML = txt.bioGender;
+      document.getElementById('bioOrigin').innerHTML = txt.bioOrigin;
+      document.getElementById('bioStatus').innerHTML = txt.bioStatus;
+      document.getElementById('tag1').innerHTML = txt.tag1;
+      document.getElementById('tag2').innerHTML = txt.tag2;
+      document.getElementById('tag3').innerHTML = txt.tag3;
+      document.getElementById('mysteryText').innerHTML = txt.mysteryText;
+      langBtn.innerHTML = txt.langBtn;
     });
   </script>
 </body>

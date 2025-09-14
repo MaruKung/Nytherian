@@ -14,37 +14,29 @@
     <div class="container">
       <h1>รายชื่อผู้เล่น</h1>
       <div class="list">
-        <div class="card player-card" data-id="nusmaru">
-          <div class="sigil">
-            <img class="crystal" src="https://cdn.discordapp.com/attachments/1409477896275492969/1416764684367036478/IMG_9351.png" alt="Emblem Crystal">
-          </div>
-          <div class="info">
-            <h2>Nusmaru Nytherian</h2>
-            <div class="subtitle">ลูกครึ่งเอลฟ์ • อายุ 121 ปี</div>
-          </div>
+        <div class="card">
+          <h2>Nusmaru Nytherian</h2>
+          <div class="subtitle">ลูกครึ่งเอล์ฟ • อายุ 121 ปี</div>
+          <button class="btn primary" onclick="window.location.href='ID001.html'">ดูโปรไฟล์</button>
         </div>
 
-        <div class="card player-card" data-id="player2">
-          <div class="sigil"></div>
-          <div class="info">
-            <h2>Player Two</h2>
-            <div class="subtitle">ตัวละครลึกลับ • อายุ 99 ปี</div>
-          </div>
+        <div class="card">
+          <h2>Player Two</h2>
+          <div class="subtitle">ตัวละครลึกลับ • อายุ 99 ปี</div>
+          <button class="btn primary" onclick="window.location.href='ID002.html'">ดูโปรไฟล์</button>
         </div>
 
-        <div class="card player-card" data-id="player3">
-          <div class="sigil"></div>
-          <div class="info">
-            <h2>Player Three</h2>
-            <div class="subtitle">นักรบผู้กล้าหาญ • อายุ 87 ปี</div>
-          </div>
+        <div class="card">
+          <h2>Player Three</h2>
+          <div class="subtitle">นักรบผู้กล้าหาญ • อายุ 87 ปี</div>
+          <button class="btn primary" onclick="window.location.href='ID003.html'">ดูโปรไฟล์</button>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    // --- Starfield Canvas ---
+    // --- Starfield Canvas (เหมือนหน้าโปรไฟล์) ---
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
     let w=0,h=0,stars=[];
@@ -103,15 +95,6 @@
 
     addEventListener('resize', resize);
     resize();
-
-    // --- Navigate to Profile ---
-    const playerCards = document.querySelectorAll('.player-card');
-    playerCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const id = card.getAttribute('data-id');
-        window.location.href = `profile.html?id=${id}`;
-      });
-    });
   </script>
 </body>
 </html>

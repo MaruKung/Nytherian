@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>หลังบ้าน</title>
+</head>
+<body>
+  <h2>หลังบ้าน</h2>
+  <button onclick="logout()">ออกจากระบบ</button>
+  <ul id="list"></ul>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script>
+    const supabaseClient = supabase.createClient(
+      "https://xeztzqxjrzftcwwizslu.supabase.co",
+      "sb_publishable_mtkFl-TWI1FHMUVRcY0_Rw_qQeU9GzO"
+    );
+
+    async function checkUser() {
+      const { data } = await supabaseClient.auth.getUser();
+      if (!data.user) {
+        window.location.href = "login.html";
+      }
+    }
+
+    async function loadUsers() {
+      const { data } = await supabaseClient
+        .from("profiles")
+        .select("*");
+
+      data.forEach(user => {
+        list.innerHTML += `<li>${user.email} (${user.role})</li>`;
+      });
+    }
+
+    async function logout() {
+      await supabaseClient.auth.signOut();
+      window.location.href = "login.html";
+    }
+
+    checkUser();
+    loadUsers();
+  </script>
+</body>
+</html>

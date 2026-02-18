@@ -1,11 +1,180 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
-  <title>หน้าแรก</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dark Red Portal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Mali', cursive;
+}
+
+body{
+  background: linear-gradient(135deg,#0a0a0a,#1a0000);
+  color:#fff;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.container{
+  width:95%;
+  max-width:500px;
+  background:rgba(0,0,0,0.85);
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 0 30px rgba(255,0,0,0.4);
+  border:1px solid rgba(255,0,0,0.3);
+  backdrop-filter:blur(10px);
+}
+
+h1{
+  text-align:center;
+  margin-bottom:20px;
+  color:#ff2e2e;
+  text-shadow:0 0 15px rgba(255,0,0,0.6);
+}
+
+h2{
+  margin:15px 0 10px;
+  color:#ff5555;
+}
+
+input{
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  border:none;
+  border-radius:10px;
+  background:#1a1a1a;
+  color:white;
+  border:1px solid rgba(255,0,0,0.4);
+  outline:none;
+}
+
+input:focus{
+  border-color:#ff0000;
+  box-shadow:0 0 10px rgba(255,0,0,0.6);
+}
+
+button{
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(45deg,#990000,#ff0000);
+  color:white;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 15px rgba(255,0,0,0.8);
+}
+
+.post{
+  background:#140000;
+  padding:10px;
+  margin-top:10px;
+  border-radius:10px;
+  border:1px solid rgba(255,0,0,0.4);
+}
+
+.small{
+  font-size:12px;
+  opacity:0.7;
+  text-align:center;
+  margin-top:15px;
+}
+</style>
 </head>
 <body>
-  <h1>ยินดีต้อนรับ</h1>
-  <a href="register.html">สมัครสมาชิก</a><br>
-  <a href="login.html">เข้าสู่ระบบ</a>
+
+<div class="container">
+  <h1>DARK RED SYSTEM</h1>
+
+  <h2>สมัคร / เข้าสู่ระบบ</h2>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="signUp()">สมัคร</button>
+  <button onclick="login()">เข้าสู่ระบบ</button>
+
+  <h2>เพิ่มประกาศ</h2>
+  <input type="text" id="title" placeholder="หัวข้อ">
+  <input type="text" id="content" placeholder="เนื้อหา">
+  <button onclick="addPost()">โพสต์</button>
+
+  <h2>ประกาศทั้งหมด</h2>
+  <div id="posts"></div>
+
+  <div class="small">Powered by Supabase</div>
+</div>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+
+const supabase = createClient(
+  "https://xeztzqxjrzftcwwizslu.supabase.co",
+  "sb_publishable_mtkFl-TWI1FHMUVRcY0_Rw_qQeU9GzO"
+)
+
+window.signUp = async () => {
+  const email = document.getElementById("email").value
+  const password = document.getElementById("password").value
+  const { error } = await supabase.auth.signUp({ email, password })
+  alert(error ? error.message : "สมัครสำเร็จ เช็คเมล")
+}
+
+window.login = async () => {
+  const email = document.getElementById("email").value
+  const password = document.getElementById("password").value
+  const { error } = await supabase.auth.signInWithPassword({ email, password })
+  alert(error ? error.message : "เข้าสู่ระบบสำเร็จ")
+  loadPosts()
+}
+
+window.addPost = async () => {
+  const title = document.getElementById("title").value
+  const content = document.getElementById("content").value
+
+  const { error } = await supabase
+    .from("posts")
+    .insert([{ title, content }])
+
+  alert(error ? error.message : "โพสต์แล้ว")
+  loadPosts()
+}
+
+async function loadPosts(){
+  const { data } = await supabase
+    .from("posts")
+    .select("*")
+    .order("created_at",{ascending:false})
+
+  const container = document.getElementById("posts")
+  container.innerHTML = ""
+
+  data?.forEach(post=>{
+    container.innerHTML += `
+      <div class="post">
+        <b>${post.title}</b>
+        <p>${post.content}</p>
+      </div>
+    `
+  })
+}
+
+loadPosts()
+</script>
+
 </body>
 </html>
